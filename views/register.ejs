@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | TaskFlow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0d0f14; --surface: #151820; --surface2: #1c2030; --border: #252a3a; --accent: #6c63ff; --accent2: #ff6584; --text: #e8eaf0; --muted: #6b7280; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .auth-wrap { width: 100%; max-width: 420px; padding: 1rem; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); text-align: center; margin-bottom: 0.3rem; letter-spacing: -1px; }
+    .tagline { text-align: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.4rem; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: 0.83rem; color: var(--muted); margin-bottom: 0.35rem; font-weight: 500; }
+    .form-group input { width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 0.65rem 0.9rem; border-radius: 8px; font-size: 0.95rem; font-family: inherit; outline: none; transition: border-color 0.2s; }
+    .form-group input:focus { border-color: var(--accent); }
+    .btn-primary { width: 100%; padding: 0.75rem; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; font-family: inherit; transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.85; }
+    .alert { background: #2a1a1a; border: 1px solid #5a2424; color: var(--accent2); padding: 0.7rem 1rem; border-radius: 8px; margin-bottom: 1.2rem; font-size: 0.88rem; }
+    .footer-link { text-align: center; margin-top: 1.2rem; font-size: 0.88rem; color: var(--muted); }
+    .footer-link a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="auth-wrap">
+    <div class="logo">TaskFlow</div>
+    <p class="tagline">Get organized. Stay on top.</p>
+    <div class="card">
+      <h2>Create account</h2>
+      <% if (error) { %>
+        <div class="alert"><%= error %></div>
+      <% } %>
+      <form method="POST" action="/register">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required/>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required/>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required/>
+        </div>
+        <button type="submit" class="btn-primary">Create Account</button>
+      </form>
+    </div>
+    <p class="footer-link">Already have an account? <a href="/login">Sign in</a></p>
+  </div>
+</body>
+</html>

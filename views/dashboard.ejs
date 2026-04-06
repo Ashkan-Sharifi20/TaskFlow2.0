@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | TaskFlow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0d0f14; --surface: #151820; --surface2: #1c2030; --border: #252a3a; --accent: #6c63ff; --accent2: #ff6584; --text: #e8eaf0; --muted: #6b7280; --success: #34d399; --warning: #fbbf24; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .btn-logout { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.85rem; text-decoration: none; }
+    main { padding: 2.5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .greeting { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; letter-spacing: -1px; margin-bottom: 0.4rem; }
+    .sub { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-value { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+    .stat-card.total .stat-value { color: var(--accent); }
+    .stat-card.completed .stat-value { color: var(--success); }
+    .stat-card.pending .stat-value { color: var(--warning); }
+    .actions { display: flex; gap: 1rem; }
+    .btn { display: inline-block; padding: 0.65rem 1.4rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; text-decoration: none; border: none; transition: opacity 0.2s; font-family: inherit; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { background: var(--surface2); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/dashboard" class="nav-logo">TaskFlow</a>
+    <div class="nav-links">
+      <a href="/dashboard" class="active">Dashboard</a>
+      <a href="/tasks">My Tasks</a>
+      <a href="/logout" class="btn-logout">Logout</a>
+    </div>
+  </nav>
+  <main>
+    <h1 class="greeting">Hey, <%= user.username %> </h1>
+    <p class="sub">Here's a quick look at your tasks.</p>
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <span class="stat-label">Total Tasks</span>
+        <span class="stat-value"><%= total %></span>
+      </div>
+      <div class="stat-card completed">
+        <span class="stat-label">Completed</span>
+        <span class="stat-value"><%= completed %></span>
+      </div>
+      <div class="stat-card pending">
+        <span class="stat-label">Pending</span>
+        <span class="stat-value"><%= pending %></span>
+      </div>
+    </div>
+    <div class="actions">
+      <a href="/tasks/add" class="btn btn-primary">+ New Task</a>
+      <a href="/tasks" class="btn btn-ghost">View All Tasks</a>
+    </div>
+  </main>
+</body>
+</html>
