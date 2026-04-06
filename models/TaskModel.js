@@ -1,3 +1,4 @@
+require("pg");
 const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = new Sequelize(process.env.POSTGRESQL_URI, {
