@@ -31,7 +31,10 @@ app.use(
 );
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI, {
+    connectTimeoutMS: 30000,
+    serverSelectionTimeoutMS: 30000
+  })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB error:", err));
 
